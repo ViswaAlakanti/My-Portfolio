@@ -92,7 +92,7 @@
     <p class="text-gray-400 mb-8">Interested in working together? Let’s connect!</p>
     
     <!-- Contact Form -->
-    <form action="https://formspree.io/f/yourFormID" method="POST" class="space-y-6 text-left max-w-lg mx-auto">
+    <form action="https://formspree.io/f/mdkwzqyv" method="POST" class="space-y-6 text-left max-w-lg mx-auto">
       
       <!-- Name -->
       <div>
@@ -120,14 +120,49 @@
               class="w-full bg-cyan-400 text-gray-900 px-6 py-3 rounded-full font-medium hover:bg-cyan-300 transition">
         Send Message
       </button>
+
     </form>
   </div>
 </section>
+
+</form>
 
   <!-- Footer -->
   <footer class="text-center py-6 text-gray-500 text-sm">
   # By Viswa | Hope you like  the user interface of the website. #
   </footer>
+
+  <script>
+const form = document.getElementById('contactForm');
+const messageDiv = document.getElementById('formMessage');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // prevent default page reload
+  const data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      messageDiv.textContent = "Thanks! Your message has been sent.";
+      messageDiv.classList.remove('hidden');
+      form.reset();
+    } else {
+      messageDiv.textContent = "Oops! There was a problem sending your message.";
+      messageDiv.classList.remove('hidden');
+    }
+  })
+  .catch(() => {
+    messageDiv.textContent = "Oops! There was a problem sending your message.";
+    messageDiv.classList.remove('hidden');
+  });
+});
+</script>
+
+
 
 </body>
 </html>
